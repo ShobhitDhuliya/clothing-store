@@ -1,0 +1,90 @@
+/* Contact fields grid + optional notes textarea with counter. */
+.booking-customer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.booking-customer__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.booking-customer__notes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.booking-customer__notes-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.booking-customer__optional {
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-muted);
+}
+
+.booking-customer__textarea {
+  width: 100%;
+  min-height: 96px;
+  padding: var(--space-3) var(--space-4);
+  font: inherit;
+  font-size: var(--font-size-sm);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.booking-customer__textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.booking-customer__textarea:hover {
+  border-color: var(--color-text-muted);
+}
+
+.booking-customer__textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.booking-customer__textarea--invalid {
+  border-color: var(--color-danger);
+}
+
+.booking-customer__textarea:disabled {
+  background-color: var(--color-bg-muted);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.booking-customer__notes-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.booking-customer__counter {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.booking-customer__notes-error {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+@media (max-width: 640px) {
+  .booking-customer__grid {
+    grid-template-columns: 1fr;
+  }
+}

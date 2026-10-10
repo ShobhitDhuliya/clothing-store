@@ -1,0 +1,116 @@
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* --- Main image ----------------------------------------------------------- */
+.product-gallery__main {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.product-gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-gallery__placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    135deg,
+    hsl(var(--hue) 55% 91%),
+    hsl(var(--hue) 42% 78%)
+  );
+}
+
+.product-gallery__monogram {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  color: hsl(var(--hue) 30% 38%);
+  opacity: 0.5;
+}
+
+.product-gallery__badge {
+  position: absolute;
+  padding: 6px 12px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-full);
+}
+
+.product-gallery__badge--sale {
+  top: var(--space-4);
+  left: var(--space-4);
+  color: var(--color-text-inverse);
+  background-color: var(--color-danger);
+}
+
+.product-gallery__badge--tag {
+  top: var(--space-4);
+  right: var(--space-4);
+  color: var(--color-text-inverse);
+  background-color: rgba(17, 24, 39, 0.85);
+}
+
+/* --- Thumbnails ----------------------------------------------------------- */
+.product-gallery__thumbs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+  gap: var(--space-3);
+}
+
+.product-gallery__thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: var(--color-bg-muted);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.product-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-gallery__thumb:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.product-gallery__thumb--active {
+  border-color: var(--color-primary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.product-gallery__thumb-placeholder {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    135deg,
+    hsl(var(--hue) 55% 91%),
+    hsl(var(--hue) 42% 78%)
+  );
+}
+
+@media (max-width: 560px) {
+  .product-gallery__thumbs {
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  }
+}

@@ -1,0 +1,118 @@
+.checkout {
+  padding-block: var(--space-6) var(--space-10);
+}
+
+/* Header ------------------------------------------------------------------- */
+.checkout__header {
+  margin-bottom: var(--space-5, 1.5rem);
+}
+
+.checkout__title {
+  font-size: var(--font-size-2xl, 1.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.checkout__subtitle {
+  margin-top: var(--space-1, 0.25rem);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* Layout — form left, sticky summary right on desktop; stacked on mobile --- */
+.checkout__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: var(--space-6, 2rem);
+  align-items: start;
+}
+
+.checkout__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.checkout__aside {
+  position: sticky;
+  top: var(--space-4);
+  min-width: 0;
+}
+
+.checkout__option-error {
+  min-height: 1rem;
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+/* Empty state -------------------------------------------------------------- */
+.checkout__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+  background-color: var(--color-bg-subtle);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-lg, 12px);
+}
+
+.checkout__empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: var(--space-4);
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.checkout__empty-title {
+  font-size: var(--font-size-xl, 1.375rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.checkout__empty-text {
+  max-width: 46ch;
+  margin-top: var(--space-3);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+.checkout__empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5, 1.5rem);
+}
+
+/* Tablet ------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .checkout__layout {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: var(--space-4);
+  }
+}
+
+/* Mobile — single column; summary leads so items are seen before the form,
+   and it un-sticks so nothing traps the viewport. ------------------------- */
+@media (max-width: 860px) {
+  .checkout__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout__aside {
+    position: static;
+    order: 1;
+  }
+
+  .checkout__form {
+    order: 2;
+  }
+}

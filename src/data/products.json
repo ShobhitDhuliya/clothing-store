@@ -1,0 +1,43 @@
+[
+  {
+    "id": 1,
+    "name": "Classic Oxford Shirt",
+    "slug": "classic-oxford-shirt",
+    "description": "A timeless button-down in breathable cotton.",
+    "categoryId": 1,
+    "brand": "Atelier",
+    "price": 49.99,
+    "images": [],
+    "rating": 4.5,
+    "reviewCount": 24,
+    "variants": [
+      {
+        "id": 101,
+        "productId": 1,
+        "size": "S",
+        "color": "White",
+        "sku": "OXF-WHT-S",
+        "price": 49.99,
+        "stock": 12
+      },
+      {
+        "id": 102,
+        "productId": 1,
+        "size": "M",
+        "color": "White",
+        "sku": "OXF-WHT-M",
+        "price": 49.99,
+        "stock": 0
+      },
+      {
+        "id": 103,
+        "productId": 1,
+        "size": "M",
+        "color": "Sky Blue",
+        "sku": "OXF-BLU-M",
+        "price": 52.99,
+        "stock": 7
+      }
+    ]
+  }
+]

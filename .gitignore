@@ -1,0 +1,34 @@
+# Environment variables — secrets are never committed
+.env
+.env.*
+!.env.example
+
+# Backend runtime data (bcrypt-hashed users live here)
+server/data/
+
+# Logs
+logs
+*.log
+audit-tree.txt
+t-*.txt
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

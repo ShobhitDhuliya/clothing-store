@@ -1,0 +1,36 @@
+/* Wrapper around the shared ColorSelector / SizeSelector fieldsets. */
+.booking-variant {
+  min-width: 0;
+  padding: 0;
+  border: none;
+}
+
+.booking-variant:focus {
+  outline: none;
+}
+
+.booking-variant:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.booking-variant__selectors {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.booking-variant__notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--color-warning);
+}
+
+.booking-variant__error {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}

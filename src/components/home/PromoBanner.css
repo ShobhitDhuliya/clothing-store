@@ -1,0 +1,78 @@
+.promo__panel {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-12);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-image: linear-gradient(120deg, #111827 0%, #1f2937 55%, #374151 100%);
+  color: var(--color-text-inverse);
+}
+
+.promo__eyebrow {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+}
+
+.promo__title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--color-text-inverse);
+}
+
+.promo__text {
+  max-width: 46ch;
+  margin-block: var(--space-3) var(--space-6);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.promo__art {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  aspect-ratio: 3 / 2;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+  background-image: radial-gradient(
+    circle at 50% 40%,
+    rgba(200, 161, 101, 0.35),
+    transparent 68%
+  );
+}
+
+.promo__discount {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-3xl);
+  line-height: 1;
+  color: var(--color-accent);
+}
+
+.promo__discount-label {
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+@media (max-width: 900px) {
+  .promo__panel {
+    grid-template-columns: 1fr;
+    padding: var(--space-8);
+  }
+
+  .promo__art {
+    aspect-ratio: 5 / 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .promo__panel {
+    padding: var(--space-6);
+  }
+}

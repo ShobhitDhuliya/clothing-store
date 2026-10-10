@@ -1,0 +1,57 @@
+/* Two-column field grid shared by the contact and address steps. */
+.checkout-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.checkout-grid__full {
+  grid-column: 1 / -1;
+}
+
+/* Manual select styled to match FormField inputs (state picker). */
+.checkout-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.checkout-field__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.checkout-field__select {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.checkout-field__select:hover {
+  border-color: var(--color-text-muted);
+}
+
+.checkout-field__select:focus-visible {
+  border-color: var(--color-accent);
+}
+
+.checkout-field__select--invalid {
+  border-color: var(--color-danger);
+}
+
+.checkout-field__error {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+@media (max-width: 640px) {
+  .checkout-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,26 @@
+/* Categories landing page. */
+.categories {
+  padding-block: var(--space-6) var(--space-10);
+}
+
+.categories__header {
+  margin-bottom: var(--space-5, 1.5rem);
+}
+
+.categories__title {
+  font-size: var(--font-size-2xl, 1.75rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.categories__subtitle {
+  max-width: 60ch;
+  margin-top: var(--space-1, 0.25rem);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.categories__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: var(--space-4);
+}

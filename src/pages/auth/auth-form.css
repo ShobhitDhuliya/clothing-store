@@ -1,0 +1,104 @@
+/* Shared auth form shell for the /login and /register pages (AuthLayout card). */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 1.25rem);
+}
+
+.auth-form__header {
+  text-align: center;
+}
+
+.auth-form__title {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-xl, 1.5rem);
+  font-weight: var(--font-weight-semibold, 600);
+}
+
+.auth-form__subtitle {
+  margin-top: var(--space-1, 0.25rem);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.auth-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.auth-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Two-up rows (e.g. first/last name), single column on small screens. */
+.auth-form__fields--grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+/* Status line: aria-live region for validation and server messages. */
+.auth-form__status {
+  min-height: 1.2em;
+  margin: 0;
+  font-size: var(--font-size-xs);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.auth-form__status--error {
+  color: var(--color-danger);
+}
+
+.auth-form__hint {
+  margin: calc(-1 * var(--space-2)) 0 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.auth-form__alt {
+  font-size: var(--font-size-sm);
+  text-align: center;
+  color: var(--color-text-muted);
+}
+
+.auth-form__alt a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.auth-form__alt a:hover {
+  color: var(--color-accent);
+}
+
+.auth-form__back {
+  font-size: var(--font-size-xs);
+  text-align: center;
+}
+
+.auth-form__back a {
+  color: var(--color-text-muted);
+}
+
+.auth-form__back a:hover {
+  color: var(--color-accent);
+}
+
+.auth-form__spinner {
+  animation: auth-form-spin 1s linear infinite;
+}
+
+@keyframes auth-form-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-form__fields--grid {
+    grid-template-columns: 1fr;
+  }
+}
