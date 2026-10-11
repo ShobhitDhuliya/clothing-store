@@ -8,9 +8,7 @@ import bookingRoutes from "./routes/bookings.js";
 const app = express();
 
 app.disable("x-powered-by");
-// Dev-friendly CORS: the Vite dev server (5173/5174) calls this API
-// cross-origin. Tighten `origin` before deploying to production.
-app.use(cors());
+app.use(cors({ origin: env.corsOrigins }));
 // Bodies only — request bodies are never logged (they may carry passwords).
 app.use(express.json({ limit: "100kb" }));
 
@@ -32,6 +30,6 @@ app.use((error, _req, res, _next) => {
   });
 });
 
-app.listen(env.port, () => {
-  console.log(`[server] API listening on http://localhost:${env.port}/api`);
+app.listen(env.port, "0.0.0.0", () => {
+  console.log(`[server] API listening on port ${env.port}`);
 });

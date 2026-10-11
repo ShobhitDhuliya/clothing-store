@@ -213,6 +213,7 @@ test("HTTP routes enforce auth, validate requests, and return canonical records"
       PORT: String(port),
       STORE_DATA_DIR: apiDataDir,
       JWT_SECRET: "api-workflow-test-secret",
+      CORS_ORIGINS: "https://store.example.test",
       EMAIL_HOST: "",
       EMAIL_USER: "",
       EMAIL_PASSWORD: "",
@@ -254,6 +255,21 @@ test("HTTP routes enforce auth, validate requests, and return canonical records"
       }
     }
     assert.equal(healthy, true, "API server should become healthy");
+
+    const allowedOriginResponse = await fetch(`${baseUrl}/health`, {
+      headers: { Origin: "https://store.example.test" },
+    });
+    assert.equal(
+      allowedOriginResponse.headers.get("access-control-allow-origin"),
+      "https://store.example.test",
+    );
+    const blockedOriginResponse = await fetch(`${baseUrl}/health`, {
+      headers: { Origin: "https://unexpected.example.test" },
+    });
+    assert.equal(
+      blockedOriginResponse.headers.get("access-control-allow-origin"),
+      null,
+    );
 
     const email = `api-${randomUUID()}@example.test`;
     const profile = {

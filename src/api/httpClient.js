@@ -1,5 +1,8 @@
-const BASE_URL =
-  import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5000/api";
+const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
+const BASE_URL = (
+  configuredBaseUrl ||
+  (import.meta.env.DEV ? "http://localhost:5000/api" : "")
+).replace(/\/+$/, "");
 
 /**
  * Thin wrapper around fetch — the single place where auth headers, JSON
@@ -16,6 +19,12 @@ class HttpClient {
   }
 
   async request(path, { method = "GET", body, headers = {}, ...rest } = {}) {
+    if (!this.baseUrl) {
+      throw new Error(
+        "VITE_API_BASE_URL must be configured with the deployed API URL.",
+      );
+    }
+
     const response = await fetch(`${this.baseUrl}${path}`, {
       method,
       headers: {

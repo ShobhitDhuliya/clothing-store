@@ -16,13 +16,16 @@ From the project root:
 
 ```powershell
 npm install
-npm --prefix server install
 ```
 
 The server reads configuration from the root `.env` file. If one does not
 exist, copy `.env.example` to `.env` and configure the values. Do not replace
 an existing `.env`. Vite only exposes values prefixed with `VITE_`; SMTP and
 JWT settings are read by the backend only.
+
+The root manifest is the deployment manifest: `npm run server` starts
+`server/index.js` using the root dependencies. The server-specific manifest
+is not needed when installing or deploying from the project root.
 
 ## Configure email
 
@@ -48,6 +51,30 @@ The frontend is served by Vite (normally `http://localhost:5173`) and the API
 by Express (normally `http://localhost:5000/api`). Set
 `VITE_API_BASE_URL` in `.env` if the API is hosted elsewhere. The API health
 check is `GET /api/health`.
+
+## Deploy to Render and Vercel
+
+Create the Render web service from the project root, install with `npm ci`,
+and use `npm run server` as the start command. Render supplies `PORT`; the API
+binds to `0.0.0.0` and exposes `GET /api/health`. Configure `NODE_ENV` as
+`production`, set a strong random `JWT_SECRET`, and set `CORS_ORIGINS` to the
+comma-separated exact origins of the deployed Vercel site (for example,
+`https://your-store.vercel.app`). Local Vite origins remain allowed for
+development.
+
+In Vercel, set `VITE_API_BASE_URL` to the Render API URL ending in `/api`, then
+redeploy the frontend. Production builds do not fall back to localhost; API
+requests report a configuration error when this value is missing.
+
+## Persistent storage
+
+The current backend stores user records, orders, and bookings as JSON files.
+Render's default filesystem is ephemeral, so records can be lost on service
+restarts or deploys unless a persistent disk is mounted. To retain the current
+storage system, attach a Render persistent disk and set `STORE_DATA_DIR` to
+its mount path (for example, `/var/data`). This file-backed store is intended
+for a single service instance; a managed database is required for horizontally
+scaled production use. No existing data is migrated or replaced by this setup.
 
 ## Checks
 
