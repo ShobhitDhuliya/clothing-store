@@ -1,8 +1,20 @@
 const configuredBaseUrl = import.meta.env.VITE_API_BASE_URL?.trim();
-const BASE_URL = (
-  configuredBaseUrl ||
-  (import.meta.env.DEV ? "http://localhost:5000/api" : "")
-).replace(/\/+$/, "");
+const DEFAULT_API_BASE_URL = import.meta.env.DEV
+  ? "http://localhost:5000/api"
+  : "https://clothing-store-api-lzqd.onrender.com/api";
+
+function normalizeApiBaseUrl(baseUrl) {
+  const withoutTrailingSlashes = baseUrl.trim().replace(/\/+$/, "");
+  const withoutRepeatedApiSuffix = withoutTrailingSlashes.replace(
+    /(?:\/api)+$/i,
+    "",
+  );
+  return `${withoutRepeatedApiSuffix}/api`;
+}
+
+const BASE_URL = normalizeApiBaseUrl(
+  configuredBaseUrl || DEFAULT_API_BASE_URL,
+);
 
 /**
  * Thin wrapper around fetch — the single place where auth headers, JSON
@@ -19,13 +31,8 @@ class HttpClient {
   }
 
   async request(path, { method = "GET", body, headers = {}, ...rest } = {}) {
-    if (!this.baseUrl) {
-      throw new Error(
-        "VITE_API_BASE_URL must be configured with the deployed API URL.",
-      );
-    }
-
-    const response = await fetch(`${this.baseUrl}${path}`, {
+    const endpoint = `/${path.replace(/^\/+/, "").replace(/^(?:api\/)+/i, "")}`;
+    const response = await fetch(`${this.baseUrl}${endpoint}`, {
       method,
       headers: {
         "Content-Type": "application/json",

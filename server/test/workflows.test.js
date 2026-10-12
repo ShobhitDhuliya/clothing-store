@@ -263,6 +263,22 @@ test("HTTP routes enforce auth, validate requests, and return canonical records"
       allowedOriginResponse.headers.get("access-control-allow-origin"),
       "https://store.example.test",
     );
+    const deployedOriginResponse = await fetch(`${baseUrl}/health`, {
+      headers: {
+        Origin: "https://clothing-store-9ywmu0knm-shobhit-s-team.vercel.app",
+      },
+    });
+    assert.equal(
+      deployedOriginResponse.headers.get("access-control-allow-origin"),
+      "https://clothing-store-9ywmu0knm-shobhit-s-team.vercel.app",
+    );
+    const localOriginResponse = await fetch(`${baseUrl}/health`, {
+      headers: { Origin: "http://localhost:5173" },
+    });
+    assert.equal(
+      localOriginResponse.headers.get("access-control-allow-origin"),
+      "http://localhost:5173",
+    );
     const blockedOriginResponse = await fetch(`${baseUrl}/health`, {
       headers: { Origin: "https://unexpected.example.test" },
     });

@@ -12,14 +12,18 @@ const rootDir = path.resolve(serverDir, "..");
 dotenv.config({ path: path.join(rootDir, ".env") });
 dotenv.config({ path: path.join(serverDir, ".env") });
 
-const localCorsOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const corsOrigins = [
+  "https://clothing-store-9ywmu0knm-shobhit-s-team.vercel.app",
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
 
 function resolveCorsOrigins() {
   const configured = (process.env.CORS_ORIGINS ?? "")
     .split(",")
     .map((origin) => origin.trim())
     .filter(Boolean);
-  const origins = [...new Set([...localCorsOrigins, ...configured])];
+  const origins = [...new Set([...corsOrigins, ...configured])];
 
   for (const origin of origins) {
     let parsed;

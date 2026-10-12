@@ -58,13 +58,16 @@ Create the Render web service from the project root, install with `npm ci`,
 and use `npm run server` as the start command. Render supplies `PORT`; the API
 binds to `0.0.0.0` and exposes `GET /api/health`. Configure `NODE_ENV` as
 `production`, set a strong random `JWT_SECRET`, and set `CORS_ORIGINS` to the
-comma-separated exact origins of the deployed Vercel site (for example,
-`https://your-store.vercel.app`). Local Vite origins remain allowed for
-development.
+current deployed storefront origin
+(`https://clothing-store-9ywmu0knm-shobhit-s-team.vercel.app`) and local Vite
+origins are allowed by default. Set `CORS_ORIGINS` only for any additional
+exact frontend origins, comma-separated.
 
-In Vercel, set `VITE_API_BASE_URL` to the Render API URL ending in `/api`, then
-redeploy the frontend. Production builds do not fall back to localhost; API
-requests report a configuration error when this value is missing.
+In Vercel, set `VITE_API_BASE_URL` to
+`https://clothing-store-api-lzqd.onrender.com/api` for Production (and Preview
+if those deployments should call this backend), then redeploy the frontend.
+Production builds do not fall back to localhost; API requests report a
+configuration error when this value is missing.
 
 ## Persistent storage
 
